@@ -35,6 +35,7 @@
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtStock = new System.Windows.Forms.TextBox();
             this.txtCategoria = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -90,11 +91,21 @@
             this.txtCategoria.Size = new System.Drawing.Size(90, 20);
             this.txtCategoria.TabIndex = 7;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(13, 199);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // frmInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(545, 411);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.txtStock);
             this.Controls.Add(this.txtPrecio);
@@ -120,5 +131,6 @@
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.TextBox txtCategoria;
+        private System.Windows.Forms.Button button1;
     }
 }
