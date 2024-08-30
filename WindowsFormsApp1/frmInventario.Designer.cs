@@ -42,9 +42,9 @@
             // dgvInventario
             // 
             this.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInventario.Location = new System.Drawing.Point(123, 44);
+            this.dgvInventario.Location = new System.Drawing.Point(109, 13);
             this.dgvInventario.Name = "dgvInventario";
-            this.dgvInventario.Size = new System.Drawing.Size(376, 220);
+            this.dgvInventario.Size = new System.Drawing.Size(643, 220);
             this.dgvInventario.TabIndex = 1;
             // 
             // Cargar
@@ -55,6 +55,7 @@
             this.Cargar.TabIndex = 2;
             this.Cargar.Text = "Cargar";
             this.Cargar.UseVisualStyleBackColor = true;
+            this.Cargar.Click += new System.EventHandler(this.Cargar_Click);
             // 
             // txtNombre
             // 
@@ -104,7 +105,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(545, 411);
+            this.ClientSize = new System.Drawing.Size(758, 411);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.txtStock);

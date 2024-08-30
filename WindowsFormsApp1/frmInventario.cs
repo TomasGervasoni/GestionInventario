@@ -22,14 +22,14 @@ namespace WindowsFormsApp1
         private void frmInventario_Load(object sender, EventArgs e)
         {
             // Crea una instancia de la clase Conexion
-            ConexionBD conexion = new ConexionBD("C:\\Users\\Alumno\\Downloads\\Lab3-1ra-clase.accdb");
+            ConexionBD conexion = new ConexionBD("BaseDatos\\Lab3-1ra-clase.accdb");
             conexion.Abrir();
 
         }
         private void CargarDatos()
         {
             // Ruta a la base de datos Access
-            string databasePath = ("C:\\Users\\Alumno\\Downloads\\Lab3-1ra-clase.accdb");
+            string databasePath = ("BaseDatos\\Lab3-1ra-clase.accdb");
 
             // Crea una instancia de la clase Conexion
             ConexionBD conexionBD = new ConexionBD(databasePath);
@@ -51,6 +51,79 @@ namespace WindowsFormsApp1
             {
                 MessageBox.Show("Error al cargar los datos: " + ex.Message);
             }
+        }
+
+        private void Cargar_Click(object sender, EventArgs e)
+        {
+                // Ruta a la base de datos Access
+                string databasePath = "BaseDatos\\Lab3-1ra-clase.accdb";
+
+                // Crea una instancia de la clase Conexion
+                ConexionBD conexionBD = new ConexionBD(databasePath);
+
+                // Obtén los valores de los TextBox
+                string nombre = txtNombre.Text;
+                string descripcion = txtDescripcion.Text;
+                string precio = txtPrecio.Text;
+                string stock = txtStock.Text;
+                string categoria = txtCategoria.Text;
+
+                // Validar los valores (podrías agregar más validaciones según sea necesario)
+                if (string.IsNullOrWhiteSpace(nombre) ||
+                    string.IsNullOrWhiteSpace(descripcion) ||
+                    string.IsNullOrWhiteSpace(precio) ||
+                    string.IsNullOrWhiteSpace(stock) ||
+                    string.IsNullOrWhiteSpace(categoria))
+                {
+                    MessageBox.Show("Por favor, complete todos los campos.");
+                    return;
+                }
+
+                // Crear la consulta SQL para insertar datos
+                string query = "INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria) VALUES (?, ?, ?, ?, ?)";
+
+                try
+                {
+                    // Abre la conexión
+                    conexionBD.Abrir();
+
+                    // Crear el comando SQL
+                    using (OleDbCommand command = new OleDbCommand(query, conexionBD.ObtenerConexion()))
+                    {
+                        // Añadir parámetros al comando
+                        command.Parameters.AddWithValue("?", nombre);
+                        command.Parameters.AddWithValue("?", descripcion);
+                        command.Parameters.AddWithValue("?", precio);
+                        command.Parameters.AddWithValue("?", stock);
+                        command.Parameters.AddWithValue("?", categoria);
+
+                        // Ejecutar el comando
+                        command.ExecuteNonQuery();
+                    }
+
+                    // Mensaje de éxito
+                    MessageBox.Show("Datos cargados correctamente.");
+
+                    // Limpiar los TextBox
+                    txtNombre.Clear();
+                    txtDescripcion.Clear();
+                    txtPrecio.Clear();
+                    txtStock.Clear();
+                    txtCategoria.Clear();
+
+                    // Recargar los datos en el DataGridView
+                    CargarDatos();
+                }
+                catch (Exception ex)
+                {
+                    // Mostrar mensaje de error
+                    MessageBox.Show("Error al cargar los datos: " + ex.Message);
+                }
+                finally
+                {
+                    // Asegurarse de cerrar la conexión
+                    conexionBD.Cerrar();
+                }           
         }
     }
 }
