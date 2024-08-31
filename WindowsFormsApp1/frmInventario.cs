@@ -138,6 +138,7 @@ namespace WindowsFormsApp1
                 // Obtén los valores de los TextBox
                 string nombre = txtNombre.Text.Trim();
                 string categoria = txtCategoria.Text.Trim();
+                string catalogo = txtCátalogo.Text.Trim();  // Obtiene el valor del nuevo TextBox
 
                 // Construir la consulta SQL con filtros
                 // Usamos parámetros para evitar inyecciones SQL
@@ -152,6 +153,10 @@ namespace WindowsFormsApp1
                 if (!string.IsNullOrEmpty(categoria))
                 {
                     query += " AND Categoria LIKE ?";
+                }
+                if (!string.IsNullOrEmpty(catalogo))
+                {
+                    query += " AND Código LIKE ?";
                 }
 
                 try
@@ -170,6 +175,10 @@ namespace WindowsFormsApp1
                         if (!string.IsNullOrEmpty(categoria))
                         {
                             dataAdapter.SelectCommand.Parameters.AddWithValue("?", "%" + categoria + "%");
+                        }
+                        if (!string.IsNullOrEmpty(catalogo))
+                        {
+                            dataAdapter.SelectCommand.Parameters.AddWithValue("?", "%" + catalogo + "%");
                         }
 
                         // Crear un DataTable para almacenar los resultados
