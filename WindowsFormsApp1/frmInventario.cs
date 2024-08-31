@@ -125,5 +125,73 @@ namespace WindowsFormsApp1
                     conexionBD.Cerrar();
                 }           
         }
+
+        private void btnBuscar_Click(object sender, EventArgs e)
+        {
+     
+                // Ruta a la base de datos Access
+                string databasePath = "BaseDatos\\Lab3-1ra-clase.accdb";
+
+                // Crea una instancia de la clase Conexion
+                ConexionBD conexionBD = new ConexionBD(databasePath);
+
+                // Obtén los valores de los TextBox
+                string nombre = txtNombre.Text.Trim();
+                string categoria = txtCategoria.Text.Trim();
+
+                // Construir la consulta SQL con filtros
+                // Usamos parámetros para evitar inyecciones SQL
+                string query = "SELECT * FROM Productos WHERE 1=1";
+
+                // Agregar filtros si los valores están presentes
+                if (!string.IsNullOrEmpty(nombre))
+                {
+                    query += " AND Nombre LIKE ?";
+                }
+
+                if (!string.IsNullOrEmpty(categoria))
+                {
+                    query += " AND Categoria LIKE ?";
+                }
+
+                try
+                {
+                    // Abre la conexión
+                    conexionBD.Abrir();
+
+                    // Crear el adaptador de datos
+                    using (OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, conexionBD.ObtenerConexion()))
+                    {
+                        // Añadir parámetros si son necesarios
+                        if (!string.IsNullOrEmpty(nombre))
+                        {
+                            dataAdapter.SelectCommand.Parameters.AddWithValue("?", "%" + nombre + "%");
+                        }
+                        if (!string.IsNullOrEmpty(categoria))
+                        {
+                            dataAdapter.SelectCommand.Parameters.AddWithValue("?", "%" + categoria + "%");
+                        }
+
+                        // Crear un DataTable para almacenar los resultados
+                        DataTable dataTable = new DataTable();
+                        dataAdapter.Fill(dataTable);
+
+                        // Asignar el DataTable al DataGridView
+                        dgvInventario.DataSource = dataTable;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Mostrar mensaje de error
+                    MessageBox.Show("Error al buscar los datos: " + ex.Message);
+                }
+                finally
+                {
+                    // Asegurarse de cerrar la conexión
+                    conexionBD.Cerrar();
+                }
+            
+
+        }
     }
 }
