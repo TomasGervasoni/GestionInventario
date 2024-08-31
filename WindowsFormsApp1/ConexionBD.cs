@@ -20,7 +20,6 @@ namespace WindowsFormsApp1
             connectionString = $"Provider=Microsoft.ACE.OLEDB.12.0;" +
                 $"Data Source={databasePath};Persist Security Info=False;";
             connection = new OleDbConnection(connectionString);
-            
         }
 
         // Abre la conexión a la base de datos
