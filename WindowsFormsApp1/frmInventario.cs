@@ -37,7 +37,7 @@ namespace WindowsFormsApp1
             try
             {
                 // Abre la conexion
-
+                conexionBD.Abrir();
                 // Crea un adaptador de datos para llenar un DataTable
                 string query = "SELECT * FROM Productos";
                 OleDbDataAdapter dataAdapter = new OleDbDataAdapter(query, conexionBD.ObtenerConexion());
@@ -66,60 +66,64 @@ namespace WindowsFormsApp1
                 string descripcion = txtDescripcion.Text;
                 string precio = txtPrecio.Text;
                 string stock = txtStock.Text;
+                string categoria = txtCategoria.Text;
 
-                // Validar los valores (podrías agregar más validaciones según sea necesario)
-                if (string.IsNullOrWhiteSpace(nombre) ||
+            // Validar los valores (podrías agregar más validaciones según sea necesario)
+            if (string.IsNullOrWhiteSpace(nombre) ||
                     string.IsNullOrWhiteSpace(descripcion) ||
                     string.IsNullOrWhiteSpace(precio) ||
-                    string.IsNullOrWhiteSpace(stock) )
-                {
+                    string.IsNullOrWhiteSpace(stock) ||
+                    string.IsNullOrWhiteSpace(categoria))
+            {
                     MessageBox.Show("Por favor, complete todos los campos.");
                     return;
+            }
+
+            // Crear la consulta SQL para insertar datos
+            string query = "INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria) VALUES (?, ?, ?, ?, ?)";
+
+            try
+            {
+                // Abre la conexión
+                conexionBD.Abrir();
+
+                // Crear el comando SQL
+                using (OleDbCommand command = new OleDbCommand(query, conexionBD.ObtenerConexion()))
+                {
+                    // Añadir parámetros al comando
+                    command.Parameters.AddWithValue("?", nombre);
+                    command.Parameters.AddWithValue("?", descripcion);
+                    command.Parameters.AddWithValue("?", precio);
+                    command.Parameters.AddWithValue("?", stock);
+                    command.Parameters.AddWithValue("?", categoria);
+
+                // Ejecutar el comando
+                command.ExecuteNonQuery();
                 }
 
-                // Crear la consulta SQL para insertar datos
-                string query = "INSERT INTO Productos (Nombre, Descripcion, Precio, Stock, Categoria) VALUES (?, ?, ?, ?, ?)";
+                // Mensaje de éxito
+                MessageBox.Show("Datos cargados correctamente.");
 
-                try
-                {
-                    // Abre la conexión
-                    conexionBD.Abrir();
+                // Limpiar los TextBox
+                txtNombre.Clear();
+                txtDescripcion.Clear();
+                txtPrecio.Clear();
+                txtStock.Clear();
+                txtCategoria.Clear();
 
-                    // Crear el comando SQL
-                    using (OleDbCommand command = new OleDbCommand(query, conexionBD.ObtenerConexion()))
-                    {
-                        // Añadir parámetros al comando
-                        command.Parameters.AddWithValue("?", nombre);
-                        command.Parameters.AddWithValue("?", descripcion);
-                        command.Parameters.AddWithValue("?", precio);
-                        command.Parameters.AddWithValue("?", stock);
-
-                        // Ejecutar el comando
-                        command.ExecuteNonQuery();
-                    }
-
-                    // Mensaje de éxito
-                    MessageBox.Show("Datos cargados correctamente.");
-
-                    // Limpiar los TextBox
-                    txtNombre.Clear();
-                    txtDescripcion.Clear();
-                    txtPrecio.Clear();
-                    txtStock.Clear();
-
-                    // Recargar los datos en el DataGridView
-                    CargarDatos();
-                }
-                catch (Exception ex)
-                {
-                    // Mostrar mensaje de error
-                    MessageBox.Show("Error al cargar los datos: " + ex.Message);
-                }
-                finally
-                {
-                    // Asegurarse de cerrar la conexión
-                    conexionBD.Cerrar();
-                }           
+                // Recargar los datos en el DataGridView
+                CargarDatos();
+            }
+            catch (Exception ex)
+            {
+                // Mostrar mensaje de error
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+            finally
+            {
+                // Asegurarse de cerrar la conexión
+                conexionBD.Cerrar();
+            }           
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

@@ -40,8 +40,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txtCátalogo = new System.Windows.Forms.TextBox();
+            this.lblCAtegoria = new System.Windows.Forms.Label();
+            this.txtCategoria = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -145,29 +145,29 @@
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
-            // label6
+            // lblCAtegoria
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(3, 52);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(49, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Cátalogo";
+            this.lblCAtegoria.AutoSize = true;
+            this.lblCAtegoria.Location = new System.Drawing.Point(3, 52);
+            this.lblCAtegoria.Name = "lblCAtegoria";
+            this.lblCAtegoria.Size = new System.Drawing.Size(52, 13);
+            this.lblCAtegoria.TabIndex = 16;
+            this.lblCAtegoria.Text = "Categoria";
             // 
-            // txtCátalogo
+            // txtCategoria
             // 
-            this.txtCátalogo.Location = new System.Drawing.Point(6, 68);
-            this.txtCátalogo.Name = "txtCátalogo";
-            this.txtCátalogo.Size = new System.Drawing.Size(192, 20);
-            this.txtCátalogo.TabIndex = 17;
+            this.txtCategoria.Location = new System.Drawing.Point(6, 68);
+            this.txtCategoria.Name = "txtCategoria";
+            this.txtCategoria.Size = new System.Drawing.Size(192, 20);
+            this.txtCategoria.TabIndex = 17;
             // 
             // frmInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(744, 265);
-            this.Controls.Add(this.txtCátalogo);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtCategoria);
+            this.Controls.Add(this.lblCAtegoria);
             this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -203,7 +203,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnEliminar;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtCátalogo;
+        private System.Windows.Forms.Label lblCAtegoria;
+        private System.Windows.Forms.TextBox txtCategoria;
     }
 }
