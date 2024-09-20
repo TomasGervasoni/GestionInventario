@@ -66,14 +66,12 @@ namespace WindowsFormsApp1
                 string descripcion = txtDescripcion.Text;
                 string precio = txtPrecio.Text;
                 string stock = txtStock.Text;
-                string categoria = txtCategoria.Text;
 
                 // Validar los valores (podrías agregar más validaciones según sea necesario)
                 if (string.IsNullOrWhiteSpace(nombre) ||
                     string.IsNullOrWhiteSpace(descripcion) ||
                     string.IsNullOrWhiteSpace(precio) ||
-                    string.IsNullOrWhiteSpace(stock) ||
-                    string.IsNullOrWhiteSpace(categoria))
+                    string.IsNullOrWhiteSpace(stock) )
                 {
                     MessageBox.Show("Por favor, complete todos los campos.");
                     return;
@@ -95,7 +93,6 @@ namespace WindowsFormsApp1
                         command.Parameters.AddWithValue("?", descripcion);
                         command.Parameters.AddWithValue("?", precio);
                         command.Parameters.AddWithValue("?", stock);
-                        command.Parameters.AddWithValue("?", categoria);
 
                         // Ejecutar el comando
                         command.ExecuteNonQuery();
@@ -109,7 +106,6 @@ namespace WindowsFormsApp1
                     txtDescripcion.Clear();
                     txtPrecio.Clear();
                     txtStock.Clear();
-                    txtCategoria.Clear();
 
                     // Recargar los datos en el DataGridView
                     CargarDatos();
@@ -137,7 +133,6 @@ namespace WindowsFormsApp1
 
                 // Obtén los valores de los TextBox
                 string nombre = txtNombre.Text.Trim();
-                string categoria = txtCategoria.Text.Trim();
                 string catalogo = txtCátalogo.Text.Trim();  // Obtiene el valor del nuevo TextBox
 
                 // Construir la consulta SQL con filtros
@@ -148,11 +143,6 @@ namespace WindowsFormsApp1
                 if (!string.IsNullOrEmpty(nombre))
                 {
                     query += " AND Nombre LIKE ?";
-                }
-
-                if (!string.IsNullOrEmpty(categoria))
-                {
-                    query += " AND Categoria LIKE ?";
                 }
                 if (!string.IsNullOrEmpty(catalogo))
                 {
@@ -171,10 +161,7 @@ namespace WindowsFormsApp1
                         if (!string.IsNullOrEmpty(nombre))
                         {
                             dataAdapter.SelectCommand.Parameters.AddWithValue("?", "%" + nombre + "%");
-                        }
-                        if (!string.IsNullOrEmpty(categoria))
-                        {
-                            dataAdapter.SelectCommand.Parameters.AddWithValue("?", "%" + categoria + "%");
+                        //bhjbjhkbhjkbkbjkk
                         }
                         if (!string.IsNullOrEmpty(catalogo))
                         {

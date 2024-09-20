@@ -34,13 +34,11 @@
             this.txtDescripcion = new System.Windows.Forms.TextBox();
             this.txtPrecio = new System.Windows.Forms.TextBox();
             this.txtStock = new System.Windows.Forms.TextBox();
-            this.txtCategoria = new System.Windows.Forms.TextBox();
             this.btnModificar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.btnBuscar = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -53,14 +51,14 @@
             this.dgvInventario.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvInventario.Location = new System.Drawing.Point(109, 13);
             this.dgvInventario.Name = "dgvInventario";
-            this.dgvInventario.Size = new System.Drawing.Size(643, 342);
+            this.dgvInventario.Size = new System.Drawing.Size(624, 308);
             this.dgvInventario.TabIndex = 1;
             // 
             // Cargar
             // 
-            this.Cargar.Location = new System.Drawing.Point(6, 250);
+            this.Cargar.Location = new System.Drawing.Point(6, 211);
             this.Cargar.Name = "Cargar";
-            this.Cargar.Size = new System.Drawing.Size(75, 23);
+            this.Cargar.Size = new System.Drawing.Size(91, 23);
             this.Cargar.TabIndex = 2;
             this.Cargar.Text = "Agregar";
             this.Cargar.UseVisualStyleBackColor = true;
@@ -94,18 +92,11 @@
             this.txtStock.Size = new System.Drawing.Size(91, 20);
             this.txtStock.TabIndex = 6;
             // 
-            // txtCategoria
-            // 
-            this.txtCategoria.Location = new System.Drawing.Point(6, 224);
-            this.txtCategoria.Name = "txtCategoria";
-            this.txtCategoria.Size = new System.Drawing.Size(91, 20);
-            this.txtCategoria.TabIndex = 7;
-            // 
             // btnModificar
             // 
-            this.btnModificar.Location = new System.Drawing.Point(6, 279);
+            this.btnModificar.Location = new System.Drawing.Point(6, 240);
             this.btnModificar.Name = "btnModificar";
-            this.btnModificar.Size = new System.Drawing.Size(75, 23);
+            this.btnModificar.Size = new System.Drawing.Size(91, 23);
             this.btnModificar.TabIndex = 8;
             this.btnModificar.Text = "Modificar";
             this.btnModificar.UseVisualStyleBackColor = true;
@@ -146,29 +137,20 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Stock";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 208);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(52, 13);
-            this.label5.TabIndex = 13;
-            this.label5.Text = "Categoria";
-            // 
             // btnEliminar
             // 
-            this.btnEliminar.Location = new System.Drawing.Point(6, 308);
+            this.btnEliminar.Location = new System.Drawing.Point(6, 269);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(75, 23);
+            this.btnEliminar.Size = new System.Drawing.Size(91, 23);
             this.btnEliminar.TabIndex = 14;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
             // 
             // btnBuscar
             // 
-            this.btnBuscar.Location = new System.Drawing.Point(6, 338);
+            this.btnBuscar.Location = new System.Drawing.Point(6, 298);
             this.btnBuscar.Name = "btnBuscar";
-            this.btnBuscar.Size = new System.Drawing.Size(75, 23);
+            this.btnBuscar.Size = new System.Drawing.Size(91, 23);
             this.btnBuscar.TabIndex = 15;
             this.btnBuscar.Text = "Buscar";
             this.btnBuscar.UseVisualStyleBackColor = true;
@@ -194,18 +176,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 367);
+            this.ClientSize = new System.Drawing.Size(744, 327);
             this.Controls.Add(this.txtCátalogo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.btnEliminar);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnModificar);
-            this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.txtStock);
             this.Controls.Add(this.txtPrecio);
             this.Controls.Add(this.txtDescripcion);
@@ -213,7 +193,7 @@
             this.Controls.Add(this.Cargar);
             this.Controls.Add(this.dgvInventario);
             this.Name = "frmInventario";
-            this.Text = "frmInventario";
+            this.Text = "Gestion De Inventario";
             this.Load += new System.EventHandler(this.frmInventario_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).EndInit();
             this.ResumeLayout(false);
@@ -229,13 +209,11 @@
         private System.Windows.Forms.TextBox txtDescripcion;
         private System.Windows.Forms.TextBox txtPrecio;
         private System.Windows.Forms.TextBox txtStock;
-        private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.Button btnModificar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnEliminar;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label label6;
