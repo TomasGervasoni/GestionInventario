@@ -30,7 +30,7 @@ namespace WindowsFormsApp1
                 if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
-                    MessageBox.Show("apertura");
+                    //MessageBox.Show("apertura");
                 }
             }
             catch (Exception ex)
@@ -47,7 +47,7 @@ namespace WindowsFormsApp1
                 if (connection.State == ConnectionState.Open)
                 {
                     connection.Close();
-                    MessageBox.Show("cierre");
+                    //MessageBox.Show("cierre");
                 }
             }
             catch (Exception ex)
