@@ -1,9 +1,11 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +28,73 @@ namespace WindowsFormsApp1
             conexion.Abrir();
 
         }
+
+        private string GenerarReporteExcel()
+        {
+            // Establecer el contexto de la licencia para EPPlus
+            OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial; // O LicenseContext.Commercial si tienes una licencia comercial
+
+            // Definir ruta temporal para guardar el archivo Excel
+            string filePath = Path.Combine(Path.GetTempPath(), "ReporteInventario.xlsx");
+
+            // Crear paquete Excel
+            using (ExcelPackage excel = new ExcelPackage())
+            {
+                // Crear hoja de trabajo
+                var worksheet = excel.Workbook.Worksheets.Add("Inventario");
+
+                // Escribir cabeceras
+                worksheet.Cells[1, 1].Value = "Código";
+                worksheet.Cells[1, 2].Value = "Nombre";
+                worksheet.Cells[1, 3].Value = "Descripcion";
+                worksheet.Cells[1, 4].Value = "Precio";
+                worksheet.Cells[1, 5].Value = "Stock";
+
+                // Conectar a la base de datos y obtener los productos
+                string databasePath = "BaseDatos\\Lab3-1ra-clase.accdb";
+                ConexionBD conexionBD = new ConexionBD(databasePath);
+
+                try
+                {
+                    conexionBD.Abrir();
+                    string query = "SELECT * FROM Productos";
+                    using (OleDbCommand command = new OleDbCommand(query, conexionBD.ObtenerConexion()))
+                    {
+                        using (OleDbDataReader reader = command.ExecuteReader())
+                        {
+                            int row = 2; // Empezar a escribir desde la fila 2
+
+                            // Escribir datos en el Excel
+                            while (reader.Read())
+                            {
+                                worksheet.Cells[row, 1].Value = reader["Código"].ToString();
+                                worksheet.Cells[row, 2].Value = reader["Nombre"].ToString();
+                                worksheet.Cells[row, 3].Value = reader["Descripcion"].ToString();
+                                worksheet.Cells[row, 4].Value = reader["Precio"].ToString();
+                                worksheet.Cells[row, 5].Value = reader["Stock"].ToString();
+                                row++;
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error al generar el reporte: " + ex.Message);
+                }
+                finally
+                {
+                    conexionBD.Cerrar();
+                }
+
+                // Guardar archivo Excel en la ruta temporal
+                FileInfo excelFile = new FileInfo(filePath);
+                excel.SaveAs(excelFile);
+            }
+
+            return filePath; // Devolver la ruta del archivo generado
+        }
+
+
         private void CargarDatos()
         {
             // Ruta a la base de datos Access
@@ -197,6 +266,21 @@ namespace WindowsFormsApp1
                 // Asegurarse de cerrar la conexión
                 conexionBD.Cerrar();
             }
+        }
+
+        private void btnGenerarReporte_Click(object sender, EventArgs e)
+        {
+            // Generar el reporte y obtener la ruta del archivo
+            string reportePath = GenerarReporteExcel();
+
+            // Mostrar el archivo en Excel
+            if (File.Exists(reportePath))
+            {
+                System.Diagnostics.Process.Start(reportePath); // Esto abrirá el archivo con la aplicación predeterminada (normalmente Excel)
+            }
+
+            // Mostrar mensaje con la ruta del archivo generado
+            MessageBox.Show($"Reporte generado: {reportePath}");
         }
     }
 }

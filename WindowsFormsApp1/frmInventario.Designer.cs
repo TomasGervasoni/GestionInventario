@@ -42,6 +42,7 @@
             this.lblCAtegoria = new System.Windows.Forms.Label();
             this.txtCategoria = new System.Windows.Forms.TextBox();
             this.btnBuscar = new System.Windows.Forms.Button();
+            this.btnGenerarReporte = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventario)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,7 +53,7 @@
             this.dgvInventario.Margin = new System.Windows.Forms.Padding(4);
             this.dgvInventario.Name = "dgvInventario";
             this.dgvInventario.RowHeadersWidth = 51;
-            this.dgvInventario.Size = new System.Drawing.Size(680, 330);
+            this.dgvInventario.Size = new System.Drawing.Size(680, 378);
             this.dgvInventario.TabIndex = 1;
             // 
             // Cargar
@@ -191,11 +192,24 @@
             this.btnBuscar.UseVisualStyleBackColor = true;
             this.btnBuscar.Click += new System.EventHandler(this.btnBuscar_Click_1);
             // 
+            // btnGenerarReporte
+            // 
+            this.btnGenerarReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerarReporte.Location = new System.Drawing.Point(9, 351);
+            this.btnGenerarReporte.Margin = new System.Windows.Forms.Padding(4);
+            this.btnGenerarReporte.Name = "btnGenerarReporte";
+            this.btnGenerarReporte.Size = new System.Drawing.Size(279, 40);
+            this.btnGenerarReporte.TabIndex = 19;
+            this.btnGenerarReporte.Text = "GenerarReporte";
+            this.btnGenerarReporte.UseVisualStyleBackColor = true;
+            this.btnGenerarReporte.Click += new System.EventHandler(this.btnGenerarReporte_Click);
+            // 
             // frmInventario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(992, 356);
+            this.ClientSize = new System.Drawing.Size(992, 395);
+            this.Controls.Add(this.btnGenerarReporte);
             this.Controls.Add(this.btnBuscar);
             this.Controls.Add(this.txtCategoria);
             this.Controls.Add(this.lblCAtegoria);
@@ -236,5 +250,6 @@
         private System.Windows.Forms.Label lblCAtegoria;
         private System.Windows.Forms.TextBox txtCategoria;
         private System.Windows.Forms.Button btnBuscar;
+        private System.Windows.Forms.Button btnGenerarReporte;
     }
 }
