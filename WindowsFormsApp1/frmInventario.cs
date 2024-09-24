@@ -28,14 +28,23 @@ namespace WindowsFormsApp1
             conexion.Abrir();
 
         }
-
         private string GenerarReporteExcel()
         {
             // Establecer el contexto de la licencia para EPPlus
             OfficeOpenXml.ExcelPackage.LicenseContext = OfficeOpenXml.LicenseContext.NonCommercial; // O LicenseContext.Commercial si tienes una licencia comercial
 
-            // Definir ruta temporal para guardar el archivo Excel
-            string filePath = Path.Combine(Path.GetTempPath(), "ReporteInventario.xlsx");
+            // Obtener la ruta de la carpeta "exel" dentro del directorio del proyecto
+            string projectDirectory = AppDomain.CurrentDomain.BaseDirectory; // Directorio del proyecto en ejecución
+            string folderPath = Path.Combine(projectDirectory, "exel"); // Ruta de la carpeta "exel"
+
+            // Crear la carpeta "exel" si no existe
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+
+            // Definir la ruta para guardar el archivo Excel en la carpeta "exel"
+            string filePath = Path.Combine(folderPath, "ReporteInventario.xlsx");
 
             // Crear paquete Excel
             using (ExcelPackage excel = new ExcelPackage())
@@ -86,14 +95,13 @@ namespace WindowsFormsApp1
                     conexionBD.Cerrar();
                 }
 
-                // Guardar archivo Excel en la ruta temporal
+                // Guardar archivo Excel en la ruta definida en la carpeta "exel"
                 FileInfo excelFile = new FileInfo(filePath);
                 excel.SaveAs(excelFile);
             }
 
             return filePath; // Devolver la ruta del archivo generado
         }
-
 
         private void CargarDatos()
         {
